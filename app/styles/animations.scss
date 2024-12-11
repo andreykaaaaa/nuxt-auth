@@ -1,0 +1,34 @@
+@keyframes x-shake {
+  0% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  100% { transform: translateX(-2px); }
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes breath {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.x-shake {
+  animation-name: x-shake;
+  animation-duration: .15s;
+  animation-iteration-count: 2;
+}
+.rotation {
+  animation: rotation 2s linear infinite;
+}
+.breath {
+  animation: 1s linear breath infinite;
+}

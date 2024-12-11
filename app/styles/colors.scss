@@ -1,0 +1,153 @@
+:root {
+  --primary-accent-color: #65c97a;
+  --secondary-accent-color: #E15023;
+  --tetriary-accent-color: #2980b9;
+
+  --primary-color: #1C3E49;
+  --secondary-color: #EFF3F5;
+  --tetriary-color: #fff;
+  --quaternary-color: #f3f3f9;
+
+  --tetriary-color-hover: #f3f3f9;
+
+  --primary-inverse-text-color: #fff;
+  --secondary-inverse-text-color: #969fa8;
+  --tetriary-inverse-text-color: #7f7f7f;
+
+  --primary-text-color: #000;
+  --secondary-text-color: #212529;
+  --third-text-color: #002033;
+  --quaternary-text-color: #66686B;
+
+  --primary-border-color: #E0E0E0;
+  --secondary-border-color: #bfcfd8;
+  --third-border-color: #EFF3F5;
+
+  // pageHeader
+  --page-header-settings-bg-color: #78949D;
+  --page-header-settings-color: #fff;
+  --page-header-settings-bg-color-hover: #fff;
+  --page-header-module-color: #78949d;
+
+  // table
+  --table-color: #505254;
+  --table-bg-color: #fff;
+  --table-border: #eff3f5;
+  --table-head-bg-color: #EFF3F5;
+  --table-head-bg-color-hover: #e5ebec;
+  --table-row-bg-color-hover: #f8f8f8;
+
+  --table-pag-button-bg-color: #78949d;
+  --table-pag-button-bg-color-hover: #90a7af;
+  --table-pag-button-color: #fff;
+
+  --table-row-highlight: #65c97a;
+  --table-row-highlight-text: #fff;
+  --table-row-highlight-hover: #5ab26e;
+
+  --table-frame-bg: #fff;
+  --table-frame-shadow: #eff3f5;
+  --table-frame-border: #bfcfd8;
+  --table-frame-red: #E15023;
+
+  --table-el-border: #E0E0E0;
+  --table-el-add: #65c97a;
+  --table-el-remove: #E15023;
+
+  // status
+  --status-null-color: #78949d;
+  --status-success-color: #65c97a;
+  --status-loading-color: #F2DA00;
+  --status-error-color: #E15023;
+  --status-unknown-color: #78949d;
+
+  // tabs
+  --tabs-tab-bg: #fff;
+  --tabs-button-active: #fff;
+  --tabs-button-border: #fff;
+
+  // tree
+  --tree-highlighting: #65c97a33;
+  --tree-search-self: #1B72C733;
+  --tree-search-child: transparent;
+  --tree-search-self-highlight: #F878B833;
+  --tree-search-child-highlight: #65c97a33;
+  --tree-search-action-bg-color-open: #e5ebec;
+  --tree-search-action-bg-color-hover: #f8f8f8;
+  --tree-search-action-color: #505254;
+  --tree-empty: #969fa8;
+
+  // modal
+  --modal-header-title: #212529;
+  --modal-bg: #fff;
+  --modal-bg-secondary: #fcfcfc;
+  --modal-title: #66686B;
+  --modal-title-description: #cecece;
+  --modal-red: #E15023;
+  --modal-border: #E0E0E0;
+
+  // frame
+  --frame-error-color: #fff;
+  --frame-error-color-bg: #e33725;
+
+  // buttons
+  --primary-button-color: #65c97a;
+  --secondary-button-color: #5ab26e;
+
+  --primary-error-button-color: #E15023;
+  --secondary-error-button-color: #c3461f;
+  --tetriary-error-button-color: #FFF8F7;
+
+  --primary-white-button-color: #e5e5e5;
+  --secondary-white-button-color: #d8d8d8;
+  --primary-white-button-border-color: #78949D;
+  --primary-white-button-text-color: #78949D;
+  --primary-white-button-text-hover-color: #688189;
+
+  --primary-gray-button-color: #78949d;
+  --secondary-gray-button-color: #688289;
+
+  --primary-transparent-button-color: #65c97a;
+  --secondary-transparent-button-color: #5ab26e;
+  --primary-transparent-button-bg: rgba(0, 0, 0, 0.05);
+
+  // checkbox
+  --checkbox-border-color: #e0e0e0;
+  --checkbox-disabled-color: #efefef;
+  --checkbox-ckecked-color: #1C3E49;
+
+  // radio
+  --radio-border-color: #e0e0e0;
+  --radio-disabled-color: #f8f8f8;
+  --radio-ckecked-color: #1C3E49;
+
+  --ad-2: min(2px, 0.2vw);
+  --ad-4: min(4px, 0.6vw);
+  --ad-6: min(6px, 0.8vw);
+  --ad-8: min(8px, 1vw);
+  --ad-10: min(10px, 1.5vw);
+  --ad-12: min(12px, 2vw);
+  --ad-14: min(14px, 2.2vw);
+  --ad-16: min(16px, 2.4vw);
+  --ad-18: min(18px, 2.6vw);
+  --ad-20: min(20px, 2.8vw);
+  --ad-22: min(22px, 3vw);
+  --ad-24: min(24px, 3.1vw);
+  --ad-26: min(28px, 3.3vw);
+  --ad-28: min(26px, 3.5vw);
+  --ad-30: min(30px, 3.6vw);
+  --ad-32: min(32px, 3.7vw);
+  --ad-34: min(34px, 3.8vw);
+  --ad-36: min(36px, 3.9vw);
+  --ad-40: min(40px, 5vw);
+  --ad-42: min(42px, 5.4vw);
+  --ad-44: min(44px, 5.8vw);
+  --ad-46: min(46px, 6.2vw);
+  --ad-48: min(48px, 6.6vw);
+  --ad-56: min(56px, 7vw);
+  --ad-64: min(64px, 7.4vw);
+  --ad-74: min(74px, 8vw);
+
+  --ad-24-18: clamp(18px, 3vw, 24px);
+  --ad-36-24: clamp(24px, 4vw, 36px);
+}

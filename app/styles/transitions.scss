@@ -1,0 +1,76 @@
+.swipe {
+  &-enter-active, &-leave-active {
+    transition: .3s;
+  }
+  &-enter-from, &-leave-to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.reverse-x {
+  &-enter-active, &-leave-active {
+    transition: .3s;
+  }
+  &-enter-from, &-leave-to {
+    transform: scaleX(-100%);
+    opacity: 0;
+  }
+}
+.reverse-y {
+  &-enter-active, &-leave-active {
+    transition: .3s;
+  }
+  &-enter-from, &-leave-to {
+    transform: scaleY(-100%);
+    opacity: 0;
+  }
+}
+
+.layout {
+  &-enter-active, &-leave-active {
+    transition: .3s;
+  }
+  &-leave-to, &-enter-from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+.fade {
+  &-enter-active, &-leave-active {
+    transition: .3s;
+  }
+  &-leave-to, &-enter-from {
+    opacity: 0;
+    transform: scale(.99);
+  }
+}
+.fade-without-enter {
+  &-leave-active {
+    transition: .3s;
+  }
+  &-leave-to, &-enter-from {
+    opacity: 0;
+    transform: scale(.99);
+  }
+}
+
+.list-elements {
+  &-move {
+    transition: .3s;
+  }
+  &-enter-active, &-leave-active {
+    transition: .3s;
+    overflow: hidden;
+  }
+  &-enter-to, &-leave-from {
+    max-height: 34px;
+  }
+  &-enter-from, &-leave-to {
+    max-height: 0;
+    margin: 0;
+    opacity: 0;
+  }
+}
+

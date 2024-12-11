@@ -2,7 +2,7 @@
 </script>
 <template>
   <div>
-    <h1>Солныш, я выложил на свой серв, наконец то</h1>
-    <span>Иду кушать..</span>
+    <h1>Авторизация через Telegram</h1>
+    <block-auth-tg />
   </div>
 </template>
