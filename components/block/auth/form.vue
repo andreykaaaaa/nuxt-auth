@@ -1,79 +1,234 @@
 <script setup lang="ts">
+export type EntityLoginResponse = {
+  id: number;
+  username: string;
+  email: string;
+  bio: string;
+  image: string;
+  accessToken: string;
+};
+const router = useRouter();
+const isAuth = ref(false);
+const authForm = reactive({
+  user: {
+    email: '',
+    password: ''
+  }
+});
+const registrationForm = reactive({
+  user: {
+    last_name: '',
+    first_name: '',
+    email: '',
+    password: ''
+  }
+});
 
+function toogleForm() {
+  isAuth.value = !isAuth.value;
+}
+function login() {
+  $fetch<EntityLoginResponse>('http://localhost:8000/users/login', {
+    method: 'POST',
+    body: authForm,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => {
+      if (res && res.accessToken) {
+        localStorage.setItem('accessToken', res.accessToken);
+      }
+      router.push({ path: '/' });
+    })
+    .catch((error) => {
+      console.error('Ошибка входа:', error);
+    });
+}
+function register() {
+  $fetch<EntityLoginResponse>('http://localhost:8000/users', {
+    method: 'POST',
+    body: registrationForm,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((res) => {
+      if (res && res.accessToken) {
+        localStorage.setItem('accessToken', res.accessToken);
+      }
+      router.push({ path: '/' });
+    })
+    .catch((error) => {
+      console.error('Ошибка входа:', error);
+    });
+}
+async function loginWithGoogle() {
+  window.location.href = 'http://localhost:8000/google';
+}
 </script>
 
 <template>
   <div class="container">
-    <form name="form1" class="container__form" onsubmit="return checkStuff()">
+    <form
+      v-if="!isAuth"
+      name="form1"
+      class="container__form"
+      @submit.prevent="login"
+    >
       <div class="container__form__header">
         <div class="container__form__header__title">
           <h4>Admin</h4>
           <span>Dashboard</span>
         </div>
         <div class="container__form__header__description">
-          <h5>Sign in to your account</h5>
+          <h5>Войдите с помощью вашего аккаунта</h5>
         </div>
       </div>
       <div class="container__form__body">
         <div class="container__form__body__inputs">
-          <ui-input id="login" placeholder="Логин" autocomplete="off" class="container__form__body__inputs__input"/>
-          <ui-input id="password" placeholder="Пароль" autocomplete="off" class="container__form__body__inputs__input"/>
+          <ui-input
+            id="email"
+            placeholder="Почта"
+            autocomplete="off"
+            class="container__form__body__inputs__input"
+            v-model="authForm.user.email"
+          />
+          <ui-input
+            id="password"
+            placeholder="Пароль"
+            autocomplete="off"
+            class="container__form__body__inputs__input"
+            v-model="authForm.user.password"
+          />
         </div>
-        <div class="container__form__body__actions">
-          <label>
-            <input type="checkbox">
-            <small class="rmb">Remember me</small>
-          </label>
-          <a href="#">Forget Password?</a>
-        </div>
-        <button class="btn1">
-          Войти через тг
+      </div>
+      <div class="container__form__actions">
+        <ui-button>
+          Войти
+        </ui-button>
+      </div>
+      <div class="container__form__social">
+        <block-auth-vk />
+        <block-auth-yandex />
+        <button @click="loginWithGoogle">
+          Google
         </button>
       </div>
+      <div class="container__form__footer">
+        <p>
+          Нет аккаунта? <a
+            href="#"
+            @click.prevent="toogleForm"
+          >Зарегистрироваться</a>
+        </p>
+      </div>
     </form>
-    <a href="#" class="dnthave">Don’t have an account? Sign up</a>
+
+    <form
+      v-else
+      name="form2"
+      class="container__form"
+      @submit.prevent="register"
+    >
+      <div class="container__form__header">
+        <div class="container__form__header__title">
+          <h4>Admin</h4>
+          <span>Dashboard</span>
+        </div>
+        <div class="container__form__header__description">
+          <h5>Создайте новый аккаунт</h5>
+        </div>
+      </div>
+      <div class="container__form__body">
+        <div class="container__form__body__inputs">
+          <ui-input
+            id="newEmail"
+            placeholder="Почта"
+            autocomplete="off"
+            class="container__form__body__inputs__input"
+            v-model="registrationForm.user.email"
+          />
+          <ui-input
+            id="newLastName"
+            placeholder="Имя пользователя"
+            autocomplete="off"
+            class="container__form__body__inputs__input"
+            v-model="registrationForm.user.last_name"
+          />
+          <ui-input
+            id="newFirstName"
+            placeholder="Фамилиия пользователя"
+            autocomplete="off"
+            class="container__form__body__inputs__input"
+            v-model="registrationForm.user.first_name"
+          />
+          <ui-input
+            id="newPassword"
+            placeholder="Пароль"
+            autocomplete="off"
+            class="container__form__body__inputs__input"
+            v-model="registrationForm.user.password"
+          />
+        </div>
+      </div>
+      <div class="container__form__actions">
+        <ui-button>
+          Зарегистрироваться
+        </ui-button>
+      </div>
+      <div class="container__form__footer">
+        <p>
+          Уже есть аккаунт? <a
+            href="#"
+            @click.prevent="toogleForm"
+          >Войти</a>
+        </p>
+      </div>
+    </form>
   </div>
 </template>
 
 <style scoped lang="scss">
 .container {
-  top: 50px;
-  left: 50%;
-  position: absolute;
   text-align: center;
-  transform: translateX(-50%);
-  background-color: rgb( 33, 41, 66 );
+  background-color: rgba(35, 33, 68, 0.8);
   border-radius: 9px;
-  width: 400px;
-  height: 500px;
-  box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
+  width: min(360px, 100vw);
+  height: max-content;
+  box-shadow: 10px 14px 15px rgba(0, 0, 0, 0.6);
+  padding: 20px;
 
   &__form {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     &__header {
       display: flex;
       flex-direction: column;
       width: 100%;
-      padding: 60px 20px;
-      gap: 20px;
+      padding: 30px 20px;
+      gap: 10px;
       &__title {
-        font-size: 24px;
+        font-size: 32px;
+        font-style: italic;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         & h4 {
-          color: #5c6bc0;
+          color: #fff;
         }
         & span {
-          color: #dfdeee;
+          color: #9fa7d7;
         }
       }
-      &_description {
-        font-size: 13px;
-        color: #a1a4ad;
-        letter-spacing: 1.5px;
+      &__description {
+        & h5 {
+          font-size: 16px;
+          color: #9fa7d7;
+        }
       }
     }
     &__body {
@@ -84,53 +239,22 @@
           margin: 20px auto;
         }
       }
-      &__actions {
-        font-size: 16px;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        & label {
-          color: #dfdeee;
-        }
-        & a {
-          position: relative;
-          float: right;
-          right: 28px;
-          color: #5c7fda;
-        }
+    }
+    &__social {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    &__footer {
+      padding: 15px 0;
+      p {
+        color: #fff;
+      }
+      a {
+        color: #9fa7d7;
       }
     }
   }
-}
-
-.btn1 {
-  border:0;
-  background: #7f5feb;
-  color: #dfdeee;
-  border-radius: 100px;
-  width: 340px;
-  height: 49px;
-  font-size: 16px;
-  position: absolute;
-  top: 79%;
-  left: 8%;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.btn1:hover {
-  background: #5d33e6;
-}
-
-.dnthave{
-  position: absolute;
-  top: 92%;
-  left: 24%;
-}
-
-
-.typcn.active {
-  color: #7f60eb;
 }
 
 .error {
