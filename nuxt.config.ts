@@ -7,6 +7,10 @@ const joinDir = (path: string) => pathe.join(currentPath, path).replaceAll(sep, 
 
 export default defineNuxtConfig({
   ssr: false,
+  modules: [
+    '@pinia/nuxt',
+    'nuxt-ctoast'
+  ],
   css: [
     joinDir('./app/styles/main.scss'),
     joinDir('./app/styles/colors.scss'),

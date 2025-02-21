@@ -22,8 +22,6 @@ defineProps({
   color: #e5e7eb;
   & h2 {
     margin-top: 0;
-    color: #f0f0f5;
-    font-size: 1.5rem;
     padding-bottom: 10px;
   }
 }

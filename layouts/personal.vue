@@ -4,6 +4,7 @@
 
 <template>
   <div class="personal">
+    <block-navbar />
     <slot />
   </div>
 </template>
@@ -12,5 +13,6 @@
 .personal {
   min-height: 100%;
   background: radial-gradient(circle, #1a1a40, #000428);
+  padding: 30px;
 }
 </style>

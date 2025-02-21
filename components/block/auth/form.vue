@@ -9,6 +9,7 @@ export type EntityLoginResponse = {
 };
 const router = useRouter();
 const isAuth = ref(false);
+const { $cToast } = useNuxtApp();
 const authForm = reactive({
   user: {
     email: '',
@@ -42,7 +43,10 @@ function login() {
       router.push({ path: '/' });
     })
     .catch((error) => {
-      console.error('Ошибка входа:', error);
+      $cToast.error({
+        title: 'Ошибка входа',
+        description: error.data?.message
+      });
     });
 }
 function register() {
@@ -60,7 +64,10 @@ function register() {
       router.push({ path: '/' });
     })
     .catch((error) => {
-      console.error('Ошибка входа:', error);
+      $cToast.error({
+        title: 'Ошибка входа',
+        description: error.data?.message
+      });
     });
 }
 async function loginWithGoogle() {

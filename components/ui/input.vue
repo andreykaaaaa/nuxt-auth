@@ -30,7 +30,7 @@ function updateModelValue(event: Event) {
       v-if="props.icon"
       :class="props.icon"
       class="input-icon"
-      :icon="props.icon"
+      :icon="icon!"
     />
     <input
       class="is-input"
